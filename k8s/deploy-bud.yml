@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bud-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bud-app
+  template:
+    metadata:
+      labels:
+        app: bud-app
+    spec:
+      containers:
+        - name: bud-app
+          image: rkatrap/ruby:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: DB_HOST
+              value: "postgres-service"
+            - name: DB_USER
+              value: "Budgy"
+            - name: DB_PASSWORD
+              value: "Budgy"
+            - name: DB_NAME
+              value: "budgy_development"

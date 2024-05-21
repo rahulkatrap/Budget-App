@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: post
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: post
+  template:
+    metadata:
+      labels:
+        app: post
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:14.1
+          env:
+            - name: POSTGRES_DB
+              value: budgy_development
+            - name: POSTGRES_USER
+              value: Budgy
+            - name: POSTGRES_PASSWORD
+              value: Budgy
+          ports:
+            - containerPort: 5432
